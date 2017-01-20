@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Components 101 </title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<h1>Components 101</h1>
+
+<div id="root">
+    <heading></heading>
+    Total clicks: <span v-text="totalClicks"></span>
+    <p v-text="label"></p>
+    <ol>
+    <task v-on:tasknotify="taskClick(item)" v-for="item in list" v-bind:t="item" ></task>
+    </ol>
+</div>
+
+
+<script src="main.js"></script>
+</body>
+</html>
