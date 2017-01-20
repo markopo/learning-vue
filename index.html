@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        .color-red { color: red; }
+        .is-loading { background: pink; border: 3px solid red; color: #ff2267; }
+        .disabled { color: #666 !important; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+
+<div id="root">
+    <h1 v-bind:class="className">Vue.js experiments</h1>
+    <input type="text" id="input" v-model="message" >
+    <hr />
+    <p>{{ message }}</p>
+    <hr />
+    <input type="text" id="input2" v-model="description" >
+    <hr />
+    <p>{{ description }}</p>
+    <hr />
+    <ul>
+        <li v-for="name in names" v-text="name" ></li>
+    </ul>
+    <div style="border:1px dashed red;background: pink;" >
+        <input type="text"v-model="newName" >
+        <br />
+        <button v-bind:title="title" v-on:click="addName" > Add name</button>
+    </div>
+    <hr />
+    <div>
+        <button v-bind:disabled="isDisabled" v-on:click="clickMe" v-bind:class="{ 'is-loading' : isLoading, 'disabled' : isDisabled }">Click me</button>
+        <button v-on:click="unDisable">Undisable</button>
+    </div>
+</div>
+
+<script>
+
+    var data = {
+       message : 'Hello World',
+       newName : '',
+       description: 'Original message...',
+       title: 'Is set through javascript',
+       className: 'color-red',
+       names : [ 'Joe', 'Mary', 'Jane', 'Jack' ],
+       isLoading : false,
+       isDisabled : false
+    };
+
+     var app = new Vue({
+        el: '#root',
+        data: data,
+        methods: {
+            addName: function () {
+                this.names.push(this.newName);
+                this.newName = '';
+            },
+            clickMe: function() {
+                this.isLoading = !this.isLoading;
+                this.isDisabled = true;
+            },
+            unDisable : function () {
+                this.isDisabled = false;
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>
