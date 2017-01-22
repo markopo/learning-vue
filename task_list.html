@@ -18,6 +18,15 @@
 
 
             <message title="Hello Universe" body="Bla bla bla" ></message>
+
+            <button v-on:click="show" >Show modal</button>
+
+            <modal v-show="showModal" v-on:hide_modal="hide" >
+                <h4>Warning!</h4>
+                <p>dldslösdöldölsösd</p>
+            </modal>
+
+            <p style="color: red; background: yellow;" v-show="showModal == false" >Click to show the modal </p>
         </div>
 
     </div>

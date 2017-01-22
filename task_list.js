@@ -41,8 +41,40 @@ Vue.component('message', {
     }
 })
 
+Vue.component('modal', {
+    props: [ ],
+    template: '<div class="modal is-active"  >' +
+    '<div class="modal-background"></div>' +
+    '<div class="modal-content" style="background: #fff;"><slot></slot></div>' +
+    '<button v-on:click="hideModal" class="modal-close"></button>' +
+    '</div>',
+    methods: {
+        hideModal: function () {
+            this.$emit('hide_modal');
+        }
+    },
+    data: function () {
+        return {
+
+        };
+    }
+});
+
 
 
 new Vue({
-    el: '#root'
+    el: '#root',
+    data: function () {
+        return {
+           showModal : false
+        };
+    },
+    methods:  {
+        show: function () {
+            this.showModal = true;
+        },
+        hide: function () {
+            this.showModal = false;
+        }
+    }
 });
