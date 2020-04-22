@@ -5,6 +5,22 @@
     <title>Title</title>
     <script src="vue.js"></script>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-family: "Inconsolata", "Consolas", "Monaco", monospace;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            background: #1b6d85;
+            color: white;
+        }
+        #root { display: flex; width: 900px; margin: 0 auto; }
+        .left, .right { width: 400px; padding: 20px; }
         .color-red { color: red; }
         .is-loading { background: pink; border: 3px solid red; color: #ff2267; }
         .disabled { color: #666 !important; font-weight: bold; }
@@ -13,47 +29,57 @@
     </style>
 </head>
 <body>
-
+<header>
+    <h1>Vue.js application</h1>
+    <nav>
+        <a href="tabs.html">Tabs</a>
+        <a href="task_list.html">Task list</a>
+    </nav>
+</header>
 
 <div id="root">
-    <h1 v-bind:class="className" v-text="message" ></h1>
-    <input type="text" id="input" v-model="message" >
-    <hr />
-    <p>{{ message }}</p>
-    <hr />
-    <input type="text" id="input2" v-model="description" >
-    <hr />
-    <p>{{ description }}</p>
-    <hr />
-    <ul>
-        <li v-for="name in names" v-text="name" ></li>
-    </ul>
-    <div style="border:1px dashed red;background: pink;" >
-        <input type="text"v-model="newName" >
-        <br />
-        <button v-bind:title="title" v-on:click="addName" > Add name</button>
+    <div class="left">
+        <h1 v-bind:class="className" v-text="message" ></h1>
+        <input type="text" id="input" v-model="message" >
+        <hr />
+        <p>{{ message }}</p>
+        <hr />
+        <input type="text" id="input2" v-model="description" >
+        <hr />
+        <p>{{ description }}</p>
+        <hr />
+        <ul>
+            <li v-for="name in names" v-text="name" ></li>
+        </ul>
     </div>
-    <hr />
-    <div>
-        <button v-bind:disabled="isDisabled" v-on:click="clickMe" v-bind:class="{ 'is-loading' : isLoading, 'disabled' : isDisabled }">Click me</button>
-        <button v-on:click="unDisable">Undisable</button>
-        <button v-on:click="reverse">Reverse</button>
+    <div class="right">
+        <div style="border:1px dashed red;background: pink;" >
+            <input type="text"v-model="newName" >
+            <br />
+            <button v-bind:title="title" v-on:click="addName" > Add name</button>
+        </div>
+        <hr />
+        <div>
+            <button v-bind:disabled="isDisabled" v-on:click="clickMe" v-bind:class="{ 'is-loading' : isLoading, 'disabled' : isDisabled }">Click me</button>
+            <button v-on:click="unDisable">Undisable</button>
+            <button v-on:click="reverse">Reverse</button>
+        </div>
+        <hr />
+        <h2>All tasks</h2>
+        <ul>
+            <li v-for="task in tasks"  >
+                <span v-bind:class="{ 'completed' : task.completed, 'in-completed' : !task.completed  }" v-text="task.description" ></span> <button v-on:click="toggleCompleted(task)" >toggle complete</button>
+            </li>
+        </ul>
+        <h2>Incomplete tasks</h2>
+        <ul>
+            <li v-for="task in incompleteTasks"  v-text="task.description" > </li>
+        </ul>
+        <h2>Incomplete tasks</h2>
+        <ul>
+            <li v-for="task in completeTasks"  v-text="task.description" ></li>
+        </ul>
     </div>
-    <hr />
-    <h2>All tasks</h2>
-    <ul>
-        <li v-for="task in tasks"  >
-            <span v-bind:class="{ 'completed' : task.completed, 'in-completed' : !task.completed  }" v-text="task.description" ></span> <button v-on:click="toggleCompleted(task)" >toggle complete</button>
-        </li>
-    </ul>
-    <h2>Incomplete tasks</h2>
-    <ul>
-        <li v-for="task in incompleteTasks"  v-text="task.description" > </li>
-    </ul>
-    <h2>Incomplete tasks</h2>
-    <ul>
-        <li v-for="task in completeTasks"  v-text="task.description" ></li>
-    </ul>
 </div>
 
 <script>
