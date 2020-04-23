@@ -3,19 +3,21 @@ window.Event = new Vue();
 
 Vue.component('coupon', {
 
-    template: '<input placeholder="Enter your coupon code"  @blur="onCouponApplied" >',
-    data: {
-        couponCode: ''
+    template: '<input placeholder="Enter your coupon code" v-model="couponCode"  @blur="onCouponApplied" >',
+    data: function() {
+        return {
+            couponCode: ''
+        };
     },
     methods: {
-        onCouponApplied(e) {
-            const coupon = e.target.value;
+        onCouponApplied() {
+             const coupon = this.$data.couponCode;
 
             if(coupon.length < 2) {
                 return;
             }
 
-            console.log('coupon', e, this, 'onCouponApplied');
+            console.log('coupon', this, 'onCouponApplied');
             Event.$emit('applied', { coupon });
         }
     }
