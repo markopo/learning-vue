@@ -1,6 +1,32 @@
 window.Event = new Vue();
 
 
+Vue.component('event-viewer', {
+    data() {
+        return {
+            progressRate: 0
+        }
+    },
+    created() {
+
+        const timer = setInterval(() => {
+
+            if (this.$data.progressRate < 100) {
+                this.$data.progressRate += 10;
+            } else {
+                clearInterval(timer);
+            }
+
+        }, 500);
+
+    },
+    methods: {
+
+    }
+
+});
+
+
 Vue.component('coupon', {
 
     template: '<input placeholder="Enter your coupon code" v-model="couponCode"  @blur="onCouponApplied" >',
