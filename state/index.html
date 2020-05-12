@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link href="../css/styles.css" rel="stylesheet" />
+    <style>
+        .root {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 60rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>App</h1>
+</header>
+
+<div class="root">
+    <div id="one">
+        <h5>{{ foo }}</h5>
+        <div>
+            <input v-model="foo" placeholder="edit me">
+        </div>
+        <p>1. User: {{ shared.user.name }}</p>
+        <div>
+            <input v-model="shared.user.name" placeholder="edit me">
+        </div>
+    </div>
+    <div id="two">
+        <h5>{{ foo }}</h5>
+        <div>
+            <input v-model="foo" placeholder="edit me">
+        </div>
+        <p>2. User: {{ shared.user.name }}</p>
+        <div>
+            <input v-model="shared.user.name" placeholder="edit me">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
