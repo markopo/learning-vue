@@ -12,6 +12,25 @@
             margin: 0 auto;
             width: 60rem;
         }
+
+        .user {
+            outline: 2px dashed pink;
+            padding: .3rem;
+        }
+
+        .wow {
+            font-size: 2rem;
+            color: red;
+            font-family: "American Typewriter";
+            font-weight: bold;
+            animation: blinker 3s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                color: yellow;
+            }
+        }
     </style>
 </head>
 <body>
@@ -29,6 +48,8 @@
         <div>
             <input v-model="shared.user.name" placeholder="edit me">
         </div>
+        <hr />
+        <user :name="shared.user.name" ></user>
     </div>
     <div id="two">
         <h5>{{ foo }}</h5>
@@ -39,6 +60,8 @@
         <div>
             <input v-model="shared.user.name" placeholder="edit me">
         </div>
+        <hr />
+        <user :name="shared.user.name" ></user>
     </div>
 </div>
 
